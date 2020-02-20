@@ -11,7 +11,6 @@ def upload_to_s3(hook, data, key):
     hook.load_string(string_data=data, key=key, bucket_name='l.klimovich', replace=True)
 
 
-bucket = 'l.klimovich'
 s3_hook = S3Hook(aws_conn_id='S3_connect')
 start_date = str(date.today()-timedelta(days=365))
 end_date = str(date.today())
@@ -50,7 +49,7 @@ hist_data_tsla = stock_tsla.get_historical_price_data(start_date, end_date, 'dai
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
-    'start_date': datetime.today(),
+    'start_date': '2020-02-19',
     'email': ['olisawa@gmail.com'],
     'email_on_failure': False,
     'email_on_retry': False,
